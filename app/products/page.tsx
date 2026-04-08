@@ -229,7 +229,26 @@ function ProductCard({ product, onQuickAdd }: { product: Product; onQuickAdd: (p
     <div className="bg-white rounded-lg shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden group">
       {/* Product Image */}
       <div className="aspect-square bg-gray-200 relative overflow-hidden">
-        <div className="w-full h-full bg-gradient-to-br from-indigo-100 to-purple-100"></div>
+        <img 
+          src={product.images[0]} 
+          alt={product.name}
+          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+          onError={(e) => {
+            // Fallback to gradient if image fails to load
+            const target = e.target as HTMLImageElement;
+            target.style.display = 'none';
+            const parent = target.parentElement;
+            if (parent) {
+              if (product.category === "Men") {
+                parent.className = "w-full h-full bg-gradient-to-br from-blue-400 to-indigo-600";
+              } else if (product.category === "Women") {
+                parent.className = "w-full h-full bg-gradient-to-br from-pink-400 to-purple-600";
+              } else {
+                parent.className = "w-full h-full bg-gradient-to-br from-indigo-100 to-purple-100";
+              }
+            }
+          }}
+        />
         
         {/* Sale Badge */}
         {product.compareAtPrice && (

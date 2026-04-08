@@ -29,54 +29,24 @@ export default function ProductCard({ product }: ProductCardProps) {
     <div className="bg-white rounded-lg shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden group">
       {/* Product Image */}
       <div className="aspect-square bg-gray-200 relative overflow-hidden">
-        {product.category === "Men" && (
-          <div className="w-full h-full bg-gradient-to-br from-blue-400 to-indigo-600"></div>
-        )}
-        {product.category === "Women" && (
-          <div className="w-full h-full bg-gradient-to-br from-pink-400 to-purple-600"></div>
-        )}
-        
-        {/* Product-specific patterns */}
-        {product.name.includes("T-Shirt") && (
-          <div className="absolute inset-0 flex items-center justify-center">
-            <div className="text-white text-6xl opacity-20">👕</div>
-          </div>
-        )}
-        {product.name.includes("Jeans") && (
-          <div className="absolute inset-0 flex items-center justify-center">
-            <div className="text-white text-6xl opacity-20">👖</div>
-          </div>
-        )}
-        {product.name.includes("Dress") && (
-          <div className="absolute inset-0 flex items-center justify-center">
-            <div className="text-white text-6xl opacity-20">👗</div>
-          </div>
-        )}
-        {product.name.includes("Jacket") && (
-          <div className="absolute inset-0 flex items-center justify-center">
-            <div className="text-white text-6xl opacity-20">🧥</div>
-          </div>
-        )}
-        {product.name.includes("Handbag") && (
-          <div className="absolute inset-0 flex items-center justify-center">
-            <div className="text-white text-6xl opacity-20">👜</div>
-          </div>
-        )}
-        {product.name.includes("Shoes") && (
-          <div className="absolute inset-0 flex items-center justify-center">
-            <div className="text-white text-6xl opacity-20">👟</div>
-          </div>
-        )}
-        {product.name.includes("Leggings") && (
-          <div className="absolute inset-0 flex items-center justify-center">
-            <div className="text-white text-6xl opacity-20">🏃‍♀️</div>
-          </div>
-        )}
-        {product.name.includes("Sneakers") && (
-          <div className="absolute inset-0 flex items-center justify-center">
-            <div className="text-white text-6xl opacity-20">👟</div>
-          </div>
-        )}
+        <img 
+          src={product.images[0]} 
+          alt={product.name}
+          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+          onError={(e) => {
+            // Fallback to gradient if image fails to load
+            const target = e.target as HTMLImageElement;
+            target.style.display = 'none';
+            const parent = target.parentElement;
+            if (parent) {
+              if (product.category === "Men") {
+                parent.className = "w-full h-full bg-gradient-to-br from-blue-400 to-indigo-600";
+              } else if (product.category === "Women") {
+                parent.className = "w-full h-full bg-gradient-to-br from-pink-400 to-purple-600";
+              }
+            }
+          }}
+        />
         
         {/* Sale Badge */}
         {product.compareAtPrice && (
