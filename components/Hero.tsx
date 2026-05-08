@@ -5,7 +5,7 @@ export default function Hero() {
     <section className="relative h-[600px] bg-gradient-to-r from-gray-900 to-gray-700 overflow-hidden">
       {/* Background Image */}
       <div className="absolute inset-0">
-        <div className="w-full h-full bg-[url('https://i.pinimg.com/736x/6c/03/35/6c03354a8988d0ec3c2a54e3c2a9efff.jpg')] bg-cover bg-center opacity-50"></div>
+        <div className="w-full h-full bg-[url('https://i.pinimg.com/736x/9c/36/81/9c36810ddadf464d7cfd4d24c6b35833.jpg')] bg-cover bg-center opacity-50"></div>
       </div>
       
       {/* Content */}
